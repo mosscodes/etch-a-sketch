@@ -1,0 +1,37 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Etch-A-Sketch</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <center>
+        <h1>Etch-A-Sketch</h1>
+        
+        <!-- Create clear screen function -->
+        <button id="clear-screen" onclick="clearScreen()">
+            Erase the Screen?
+        </button>
+        <div id="grid-container"></div>
+    </center>
+
+    <script>
+        const gridContainer = document.getElementById('grid-container');
+
+        //creation of the board
+        //if I want functionality to the divs I'm creating, like changing color, I must add it upon creation
+        for (i = 0; i < 16; i++) {
+            const grid = document.createElement('div');
+            grid.className = "grid";
+            grid.addEventListener("mouseover", function() {
+                grid.style.backgroundColor = "green";
+            });
+            gridContainer.appendChild(grid);          
+        }
+       
+
+    </script>   
+</body>
+</html>

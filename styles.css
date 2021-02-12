@@ -1,0 +1,18 @@
+#clear-screen {
+    margin: 40px;
+}
+
+
+#grid-container {
+    display: grid;
+    height: 75%;
+    width: 75%;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.grid {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: lightgrey;
+}
