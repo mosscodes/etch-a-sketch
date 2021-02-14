@@ -10,28 +10,53 @@
     <center>
         <h1>Etch-A-Sketch</h1>
         
-        <!-- Create clear screen function -->
         <button id="clear-screen" onclick="clearScreen()">
-            Erase the Screen?
+            Resize Sketch Pad?
         </button>
         <div id="grid-container"></div>
     </center>
 
     <script>
         const gridContainer = document.getElementById('grid-container');
+        let gridNumber = 16;
 
-        //creation of the board
-        //if I want functionality to the divs I'm creating, like changing color, I must add it upon creation
-        for (i = 0; i < 16; i++) {
-            const grid = document.createElement('div');
-            grid.className = "grid";
-            grid.addEventListener("mouseover", function() {
-                grid.style.backgroundColor = "green";
-            });
-            gridContainer.appendChild(grid);          
+        createGrid();
+
+        function clearScreen() {
+            gridNumber = parseInt(prompt("Enter a new grid size between 1 and 100"));
+
+            while (true) {
+                if ((gridNumber < 1 || gridNumber > 100) || isNaN(gridNumber) === true) {
+                    gridNumber = parseInt(prompt("You must enter a number between 1 and 100"));
+                }
+                else {
+                    break;
+                }
+            }
+            //to manipulate a node list, turn it into an array
+            const gridList = Array.from(document.querySelectorAll('.grid'));
+            for (let i = 0; i < gridList.length; i++) {
+                gridList[i].remove();
+            }
+            
+            createGrid();
         }
        
+        function createGrid() {
+            //edits size of boxes
+            gridContainer.style.gridTemplateRows = `repeat(${gridNumber}, ${1/gridNumber}fr)`;
+            gridContainer.style.gridTemplateColumns = `repeat(${gridNumber}, ${1/gridNumber}fr)`; 
 
+            for (let i = 0; i < (gridNumber * gridNumber); i++) {
+                const grid = document.createElement('div');
+                grid.className = "grid";
+                //if I want functionality to the divs I'm creating, like changing color, I must add it upon creation
+                grid.addEventListener("mouseover", function() {
+                    grid.style.backgroundColor = "green";
+                });
+                gridContainer.appendChild(grid);   
+            }
+        }
     </script>   
 </body>
 </html>
