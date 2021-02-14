@@ -52,7 +52,10 @@
                 grid.className = "grid";
                 //if I want functionality to the divs I'm creating, like changing color, I must add it upon creation
                 grid.addEventListener("mouseover", function() {
-                    grid.style.backgroundColor = "green";
+                    const r = Math.floor(Math.random() * 256);
+                    const g = Math.floor(Math.random() * 256);
+                    const b = Math.floor(Math.random() * 256);
+                    grid.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
                 });
                 gridContainer.appendChild(grid);   
             }
